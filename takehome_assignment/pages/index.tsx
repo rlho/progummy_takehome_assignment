@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Draggable, { DraggableData, DraggableEventHandler } from 'react-draggable'; // The default
 import { dotRepository, DotRepository } from '../repositories/dotRepository'
 import React from 'react';
+import { DraggableEvent } from 'react-draggable';
 
 export default function Home() {
  const [translate, setTranslate] = useState({
@@ -20,8 +21,8 @@ export default function Home() {
     })
   },[])
 
-  const onDrag = async (e, data) => {
-    await dotRepository.update(data.lastX, data.lastY)
+  const onDrag = (e: DraggableEvent, data: DraggableData) => {
+    dotRepository.update(data.lastX, data.lastY)
   }
 
   return (
